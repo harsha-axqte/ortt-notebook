@@ -1,343 +1,193 @@
-Object-Relative Temporal Theory (ORTT) Simulations
+# Object-Relative Temporal Theory (ORTT) Simulations
 
-This repository contains fully reproducible simulations for the Object-Relative Temporal Theory (ORTT), developed to explore emergent, object-relative time in hybrid quantum–classical systems.
+This repository contains **fully reproducible simulations** for the **Object-Relative Temporal Theory (ORTT)**, developed to explore **emergent, object-relative time** in hybrid quantum–classical systems.
 
-Paper reference:
-Harsha Vardhan Routhu, "Object-Relative Temporal Theory (ORTT): Redefining the Ontology of Time", submitted to [Journal/PRX].
+**Paper reference:**  
+Harsha Vardhan Routhu, *"Object-Relative Temporal Theory (ORTT): Redefining the Ontology of Time"*, submitted to [Journal/PRX].
 
-1. Overview
-What is ORTT?
+---
 
-ORTT proposes that time is not universal, but emerges relationally from entropy dynamics and subsystem interactions.
+## 1. Overview
 
-Key principles:
+### What is ORTT?
 
-Relational Time: Each subsystem has its own temporal parameter, $\tau$, derived from internal and environmental entropy changes.
+ORTT proposes that **time is not universal**, but emerges **relationally** from entropy dynamics and subsystem interactions.  
 
-Entropy–Time Coupling: Effective time increments depend on the rate of entropy production.
+**Key principles:**
 
-Interaction Dependence: Coupled systems dynamically adjust relative time scales via interactions.
+- **Relational Time:** Each subsystem has its own temporal parameter, $\tau$, derived from internal and environmental entropy changes.  
+- **Entropy–Time Coupling:** Effective time increments depend on the rate of entropy production.  
+- **Interaction Dependence:** Coupled systems dynamically adjust relative time scales via interactions.
 
-ORTT provides a quantitative framework to predict measurable deviations in quantum and classical dynamics due to entropy-driven time scaling.
+ORTT provides a **quantitative framework** to predict measurable deviations in quantum and classical dynamics due to entropy-driven time scaling.
 
-2. Core Equations Implemented
-Quantum Subsystems
+---
 
-Object-relative quantum time increment:
+## 2. Core Equations Implemented
 
-Δ
-𝜏
-𝑄
-=
-Δ
-𝑡
-[
-1
-+
-𝛼
-𝑄
-𝑓
- ⁣
-(
-𝑑
-𝑆
-𝑑
-𝑡
-)
-]
-Δτ
-Q
-	​
+### Quantum Subsystems
 
-=Δt[1+α
-Q
-	​
+**Object-relative quantum time increment:**
 
-f(
-dt
-dS
-	​
+$$
+\Delta \tau_Q = \Delta t \left[ 1 + \alpha_Q f\left(\frac{dS}{dt}\right) \right]
+$$
 
-)]
+**Quantum evolution (von Neumann + Lindblad):**
 
-Quantum evolution (von Neumann + Lindblad):
-
-𝑑
-𝜌
-𝑑
-𝜏
-𝑄
-=
-−
-𝑖
-ℏ
-[
-𝐻
-,
-𝜌
-]
-+
-𝐿
-(
-𝜌
-)
-dτ
-Q
-	​
-
-dρ
-	​
-
-=−
-ℏ
-i
-	​
-
-[H,ρ]+L(ρ)
+$$
+\frac{d\rho}{d\tau_Q} = -\frac{i}{\hbar}[H, \rho] + \mathcal{L}(\rho)
+$$
 
 Where:
 
-$\rho$ = density matrix
+- $\rho$ = density matrix  
+- $S[\rho] = -\mathrm{Tr}(\rho \log \rho)$ = von Neumann entropy  
+- $H$ = Hamiltonian + interaction-dependent feedback  
+- $\mathcal{L}(\rho)$ = Lindblad dissipator  
+- $f$ = bounded monotonic function ($\tanh$ in code)  
+- $\alpha_Q$ = quantum coupling constant  
 
-$S[\rho] = -\mathrm{Tr}(\rho \log \rho)$ = von Neumann entropy
+---
 
-$H$ = Hamiltonian + interaction-dependent feedback
+### Classical Subsystems
 
-$\mathcal{L}(\rho)$ = Lindblad dissipator
+**Classical object-relative time increment:**
 
-$f$ = bounded monotonic function ($\tanh$ in code)
+$$
+\Delta \tau_C = \Delta t \left[ 1 + \alpha_C g(x) \right]
+$$
 
-$\alpha_Q$ = quantum coupling constant
+**Classical evolution:**
 
-Classical Subsystems
-
-Classical object-relative time increment:
-
-Δ
-𝜏
-𝐶
-=
-Δ
-𝑡
-[
-1
-+
-𝛼
-𝐶
-𝑔
-(
-𝑥
-)
-]
-Δτ
-C
-	​
-
-=Δt[1+α
-C
-	​
-
-g(x)]
-
-Classical evolution:
-
-𝑑
-𝑥
-𝑑
-𝜏
-𝐶
-=
-𝐹
-(
-𝑥
-,
-𝜌
-)
-dτ
-C
-	​
-
-dx
-	​
-
-=F(x,ρ)
+$$
+\frac{dx}{d\tau_C} = F(x, \rho)
+$$
 
 Where:
 
-$x(t) = [V_m, g]$ = classical state variables (membrane potential, gating)
+- $x(t) = [V_m, g]$ = classical state variables (membrane potential, gating)  
+- $g(x)$ = function of subsystem observables  
+- $F(x, \rho)$ = dynamics including quantum feedback  
 
-$g(x)$ = function of subsystem observables
+---
 
-$F(x, \rho)$ = dynamics including quantum feedback
-
-Interaction Scaling
+### Interaction Scaling
 
 For coupled subsystems $O_1, O_2$:
 
-Δ
-𝜏
-𝑂
-𝑖
-↦
-Δ
-𝜏
-𝑂
-𝑖
-⋅
-[
-1
-+
-𝛽
-𝑖
-𝑗
-ℎ
-(
-𝑂
-𝑖
-,
-𝑂
-𝑗
-)
-]
-Δτ
-O
-i
-	​
-
-	​
-
-↦Δτ
-O
-i
-	​
-
-	​
-
-⋅[1+β
-ij
-	​
-
-h(O
-i
-	​
-
-,O
-j
-	​
-
-)]
+$$
+\Delta \tau_{O_i} \mapsto \Delta \tau_{O_i} \cdot \left[1 + \beta_{ij} h(O_i, O_j)\right]
+$$
 
 Where:
 
-$\beta_{ij}$ = interaction strength
+- $\beta_{ij}$ = interaction strength  
+- $h(O_i, O_j)$ = functional of correlations or shared entropy  
 
-$h(O_i, O_j)$ = functional of correlations or shared entropy
+---
 
-3. Repository Structure
+## 3. Repository Structure
+```bash
+
 ORTT_Simulations/
-├── ORTT_simulation.ipynb  # Main Jupyter notebook
-├── figures/               # Output figures (PDFs)
-├── requirements.txt       # Python dependencies
-├── README.md              # This file
+├── ORTT_simulation.ipynb # Main Jupyter notebook
+├── figures/ 
+├── requirements.txt # Python dependencies
+├── python/
+├── README.md 
 
-4. Code Details
-Quantum Evolution
+```
 
-Hamiltonian: H0 + feedback term proportional to $V_m$ & $g$
+---
 
-Lindblad operator L introduces dissipation
+## 4. Code Details
 
-Uses expm for unitary evolution and explicit Lindblad step
+### Quantum Evolution
 
-Function: evolve_quantum(rho, H0, Vm, g, dtQ)
+- Hamiltonian: `H0` + feedback term proportional to $V_m$ & $g$  
+- Lindblad operator `L` introduces dissipation  
+- Uses `expm` for unitary evolution and explicit Lindblad step  
+- Function: `evolve_quantum(rho, H0, Vm, g, dtQ)`
 
-Classical Neuron Dynamics
+### Classical Neuron Dynamics
 
-Membrane potential $V_m$ and gating variable $g$
+- Membrane potential $V_m$ and gating variable $g$  
+- Leak current + quantum feedback current  
+- Integrated with `solve_ivp` using RK45  
+- Function: `classical_rhs(t, y, rho)`
 
-Leak current + quantum feedback current
+### Entropy & Time Scaling
 
-Integrated with solve_ivp using RK45
+- Quantum von Neumann entropy: `von_neumann_entropy(rho)`  
+- ORTT $\tau$ scaling vs control  
+- Functions `trace_distance` and `fidelity` compare ORTT and control quantum states  
 
-Function: classical_rhs(t, y, rho)
+### Simulation Runner
 
-Entropy & Time Scaling
+- `run_sim(use_ortt=True/False)` runs hybrid dynamics  
+- Returns classical & quantum state evolution, $\tau$ increments, Bloch components  
 
-Quantum von Neumann entropy: von_neumann_entropy(rho)
+### Post-Processing
 
-ORTT $\tau$ scaling vs control
+- $\Delta V_m$ (ORTT – Control)  
+- Trace distance and fidelity²  
+- Cumulative $\tau$ plots  
+- Bloch sphere & phase-space plots  
 
-Functions trace_distance and fidelity compare ORTT and control quantum states
+---
 
-Simulation Runner
-
-run_sim(use_ortt=True/False) runs hybrid dynamics
-
-Returns classical & quantum state evolution, $\tau$ increments, Bloch components
-
-Post-Processing
-
-$\Delta V_m$ (ORTT – Control)
-
-Trace distance and fidelity²
-
-Cumulative $\tau$ plots
-
-Bloch sphere & phase-space plots
-
-5. Reproducing Figures
+## 5. Reproducing Figures
 
 Run the notebook top-to-bottom:
 
+```bash
 git clone https://github.com/harsha-axqte/ortt-notebook.git
 cd ORTT_Simulations
 pip install -r requirements.txt
 jupyter notebook ORTT_simulation.ipynb
 
-
+```
 Figures produced:
 
-Filename	Description
-fig_delta_vm.pdf	Membrane potential difference
-fig_quantum_diff.pdf	Quantum state metrics (trace distance, fidelity²)
-fig_cumulative_tau.pdf	Cumulative object-relative times
-fig_bloch_traj.pdf	Bloch sphere trajectory
-fig_vm_pop.pdf	Neuron potential & qubit populations
-fig_phase_traj.pdf	Phase-space trajectory
-fig_phase_heatmap.pdf	Phase-space density heatmap
+| Filename |Description |
+|------|----------------|
+| fig_delta_vm.pdf |	Membrane potential difference |
+| fig_quantum_diff.pdf |	Quantum state metrics (trace distance, fidelity²)|
+|fig_cumulative_tau.pdf |	Cumulative object-relative times|
+|fig_bloch_traj.pdf |	Bloch sphere trajectory|
+|fig_vm_pop.pdf |	Neuron potential & qubit populations|
+|fig_phase_traj.pdf |	Phase-space trajectory|
+|fig_phase_heatmap.pdf|	Phase-space density heatmap|
 
 All figures are generated automatically.
 
 6. Zenodo Archival
-
 This repository has been archived on Zenodo for reproducibility:
 
 DOI: https://doi.org/XXXX/zenodo.XXXXX
 
 7. Requirements
-
 Python ≥ 3.9
 
 Packages: NumPy, SciPy, Matplotlib, Jupyter Notebook
 
 Install dependencies:
 
+bash
+Copy code
 pip install -r requirements.txt
-
 8. License
-
-CC-BY 4.0 — reuse, adapt, and distribute with proper attribution.
+This code is licensed under CC-BY 4.0 — reuse, adapt, and distribute with proper attribution.
 
 9. Contact
-
 Harsha Vardhan Routhu
 AXQTE, Hyderabad, India
 Email: harsha@AXQTE.com
 
 Notes for Reviewers / Readers
-
 Background $\Delta t$: Used only for numerical integration; physical predictions depend on $\tau$ ratios ($\tau_Q/\tau_C$).
 
 Physical Meaning: Divergences between ORTT and control illustrate measurable consequences of entropy-driven time.
 
-Extensibility: Adaptable to more complex neuron-qubit networks, different Hamiltonians, and classical subsystems.
+Extensibility: Notebook can be adapted to more complex neuron-qubit networks, different Hamiltonians, and classical subsystems.
