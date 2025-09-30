@@ -165,8 +165,7 @@ All figures are generated automatically.
 6. Zenodo Archival
 This repository has been archived on Zenodo for reproducibility:
 
-DOI: https://doi.org/XXXX/zenodo.XXXXX
-
+DOI: https://doi.org/10.5281/zenodo.17229366
 7. Requirements
 Python ≥ 3.9
 
