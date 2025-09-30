@@ -162,31 +162,33 @@ Figures produced:
 
 All figures are generated automatically.
 
-6. Zenodo Archival
+## 6. Zenodo Archival
 This repository has been archived on Zenodo for reproducibility:
 
 DOI: https://doi.org/10.5281/zenodo.17229366
-7. Requirements
+
+## 7. Requirements
 Python ≥ 3.9
 
 Packages: NumPy, SciPy, Matplotlib, Jupyter Notebook
 
 Install dependencies:
 
-bash
-Copy code
+```bash
 pip install -r requirements.txt
-8. License
+```
+
+## 8. License
 This code is licensed under CC-BY 4.0 — reuse, adapt, and distribute with proper attribution.
 
-9. Contact
+## 9. Contact
 Harsha Vardhan Routhu
 AXQTE, Hyderabad, India
 Email: harsha@AXQTE.com
 
-Notes for Reviewers / Readers
+### Notes for Reviewers / Readers
 Background $\Delta t$: Used only for numerical integration; physical predictions depend on $\tau$ ratios ($\tau_Q/\tau_C$).
 
 Physical Meaning: Divergences between ORTT and control illustrate measurable consequences of entropy-driven time.
 
-Extensibility: Notebook can be adapted to more complex neuron-qubit networks, different Hamiltonians, and classical subsystems.
+### Extensibility: Notebook can be adapted to more complex neuron-qubit networks, different Hamiltonians, and classical subsystems.
